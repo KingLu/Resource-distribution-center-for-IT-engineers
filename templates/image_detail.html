@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片详情 - 货架 - Bing每日图片</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .image-detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .image-detail {
+            position: relative;
+            text-align: center;
+        }
+
+        .image-detail img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .fullscreen-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            font-size: 1rem;
+        }
+
+        .navigate-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            font-size: 1rem;
+        }
+
+        .navigate-button.left {
+            left: 20px;
+        }
+
+        .navigate-button.right {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-detail-container">
+        <h1>图片详情 - 货架 - Bing每日图片</h1>
+        <div class="image-detail">
+            <button class="fullscreen-button" onclick="toggleFullScreen()">全屏</button>
+            <img src="{{ url_for('images', filename=image) }}" alt="{{ image }}">
+            <p>{{ image }}</p>
+        </div>
+        <button class="navigate-button left" onclick="navigate(-1)">&lt;</button>
+        <button class="navigate-button right" onclick="navigate(1)">&gt;</button>
+    </div>
+    <a href="{{ url_for('index') }}">返回首页</a>
+
+    <script>
+        window.images = {{ images|tojson|safe }};
+        window.currentImage = "{{ image }}";
+    </script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

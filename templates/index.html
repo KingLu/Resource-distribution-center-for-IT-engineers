@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>货架 - Bing每日图片</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>货架 - Bing每日图片</h1>
+        <div class="image-grid">
+            {% for image in images %}
+                <a href="{{ url_for('image_detail', filename=image) }}" class="image-grid-item">
+                    <img src="{{ url_for('images', filename=image) }}" alt="{{ image }}">
+                    <div class="image-title">{{ image }}</div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
